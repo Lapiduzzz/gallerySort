@@ -42,4 +42,5 @@
 input{
   width: 3vw;
   height: 3vw;
+  cursor: pointer;
 }
