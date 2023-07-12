@@ -32,6 +32,7 @@ function App() {
       if(item.length < 1){
           x();
       }
+      // eslint-disable-next-line
   },[])
 
 
