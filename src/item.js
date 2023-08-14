@@ -1,12 +1,13 @@
 import React from "react";
 import './App.css';
+import CustomCheckbox from "./CustomCheckbox";
 
-function Item({img, check, id}) {
-    const [isChecked, setIsChecked] = React.useState(check);
+function Item({img, check, id, x, activeButton, setIsActiveModal, setLinkZoomedImage}) {
+
+    const [checkDisabled, setCheckDisabled] = React.useState(false)
 
     const change = () => {
-        setIsChecked(prevState => !prevState)
-
+        setCheckDisabled(true)
         const url = `https://api.airtable.com/v0/app39R6x46PS6y2Xg/Table%201/${id}`;
         const token = 'Bearer patXYYCZSy7EWv4Sd.bd7b72504b0fd980f3df0a5894dca86a128bca482f48a7e3ff8a37dec4460ee9';
 
@@ -18,20 +19,33 @@ function Item({img, check, id}) {
             },
             body: JSON.stringify({
                 fields: {
-                    isSelected: !isChecked
+                    isSelected: !check
                 }
             })
         })
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(() => x())
             .catch(error => console.error(error));
     }
 
+    React.useEffect(()=>{
+        setCheckDisabled(false)
+    },[check])
+
+    const isSelected = check && activeButton !== 'selected'
+
+    const openModal = React.useCallback(() => {
+        setIsActiveModal(true)
+        setLinkZoomedImage(img)
+        const body = document.querySelector('body')
+        body.style.overflowY = 'hidden'
+    }, [setIsActiveModal, setLinkZoomedImage, img])
+
     return (
-        <div className='item'>
-            <img className='image' src={img} alt="img"/>
+        <div className={`item ${isSelected ? 'selectedItem' : ''}`}>
+            <img className={`image ${isSelected ? 'selectedImage' : ''}`} src={img} alt="img" onClick={openModal}/>
             <div className='inputWrapper'>
-                <input type="checkbox" checked={isChecked} onChange={change}/>
+                <CustomCheckbox checked={check} onChange={change} disabled={checkDisabled}/>
             </div>
         </div>
     );
