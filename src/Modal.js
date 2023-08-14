@@ -7,7 +7,7 @@ function Modal({active, link, setIsActiveModal}) {
         setIsActiveModal(false)
         const body = document.querySelector('body')
         body.style.overflowY = 'auto'
-    },[])
+    },[setIsActiveModal])
 
     return (
         <div className={`modal ${active ? 'activeModal' : ''}`} onClick={closeModal}>
