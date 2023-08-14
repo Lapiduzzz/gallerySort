@@ -18,6 +18,8 @@
   padding: 10px;
   box-sizing: border-box;
   transition: 0.3s;
+  border-radius: 8px;
+
 }
 .selectedItem{
   background: rgba(209, 209, 209, 0.2);
@@ -61,7 +63,7 @@
   width: 90vw;
   height: 10vh;
   background: rgba(209, 209, 209, 0.5);
-  border-radius: 20px;
+  border-radius: 8px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -76,6 +78,8 @@
   transition: 300ms;
   will-change: transform;
   color: #d1d1d1;
+  border-radius: 8px;
+
 }
 .button:hover{
   transform: scale(1.01);
@@ -114,6 +118,7 @@
   height: 100%;
   border: 1px solid #ccc;
   background-color: #fff;
+  border-radius: 8px;
 }
 
 .custom-checkbox input:checked ~ .checkmark .cross {
