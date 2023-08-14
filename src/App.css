@@ -141,6 +141,7 @@
   width: 8px;
   height: 3vw;
   background: rgb(151,1,1);
+  border-radius: 8px;
 }
 
 .cross:before {
