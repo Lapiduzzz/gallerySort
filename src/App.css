@@ -238,6 +238,7 @@
 
   .panel{
     left: 0;
+    bottom: 10px;
     width: 100vw;
     height: 10vh;
     border-radius: 0;
